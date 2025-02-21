@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Resim Galerisi</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Sayfa kaymasını engelle */
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 400px; /* Resmin yüksekliğini sınırlıyoruz */
+            object-fit: cover; /* Resmin boyutunu ve oranını düzgün şekilde yerleştirir */
+            cursor: pointer;
+        }
+
+        .carousel-inner {
+            height: 100%; /* Carousel'in yüksekliğini tam ekran yapmak için */
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .carousel-control-prev {
+            left: 0;
+        }
+
+        .carousel-control-next {
+            right: 0;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center">Bootstrap Resim Galerisi</h2>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://picsum.photos/200/300?grayscale" class="d-block w-100" alt="Resim 1" onclick="openModal(this)">
+            </div>
+            <div class="carousel-item">
+                <img src="https://picsum.photos/201/300?grayscale" class="d-block w-100" alt="Resim 2" onclick="openModal(this)">
+            </div>
+            <div class="carousel-item">
+                <img src="https://picsum.photos/202/300?grayscale" class="d-block w-100" alt="Resim 3" onclick="openModal(this)">
+            </div>
+            <div class="carousel-item">
+                <img src="https://picsum.photos/203/300?grayscale" class="d-block w-100" alt="Resim 4" onclick="openModal(this)">
+            </div>
+        </div>
+        
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Önceki</span>
+        </a>
+        
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Sonraki</span>
+        </a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Detayı</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Büyük Resim">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS ve jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Modal içinde büyük resmi göstermek için bir fonksiyon
+    function openModal(image) {
+        var modalImage = document.getElementById('modalImage');
+        modalImage.src = image.src;
+        $('#imageModal').modal('show');  // Modal'ı açma
+    }
+</script>
+
+</body>
+</html>
